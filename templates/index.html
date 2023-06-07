@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Music Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="center">
+      <p class="title"><a href="{{ url_for('redirect_page') }}">Music Recommendations</a></title>
+      <div class="text">
+        <form action="/" method="post">
+          <input type="text" name="input_text" placeholder="Your Favorite Song (You can also enter the singer here.)">
+          <input type="submit" value="Analyze" class="btn">
+        </form>
+      </div>
+      
+      {% if input_text == '' %}
+        <h2>You didn't enter a song.</h2>
+      {% elif flag == 1 %}
+        <h2>"{{ input_text }}" doesn't exist.</h2>
+      {% else %}
+        {% if track_name %}
+          <p>Your Favorite Song</p>
+          <hr>
+          <h2>{{ track_name }} - {{ artist_name }}</h2>
+          <p>Genres</p>
+          <hr>
+          <h2>{% for genre in genres %}
+            {{ genre }}{% if not loop.last %}, {% endif %}
+          {% endfor %}</h2>
+
+          <p>Random Song by {% for genre in genres %}
+            {{ genre }}{% if not loop.last %} · {% endif %}
+          {% endfor %}</p>
+          <hr>
+          <h2>{{ SongsByG_all }}</h2>
+
+          <p>Random Song by Genres</p>
+          <table>
+            <tr>
+              <th>Genre</th>
+              <th>Song</th>
+              <th>Artist</th>
+            </tr>
+            {% for Song_info in SongsByG_sep %}
+              <tr>
+                <td>{{ Song_info['genre'] }}</td>
+                <td>{{ Song_info['track_name'] }}</td>
+                <td>{{ Song_info['artist_name'] }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+          <p>Genres that You May Like (Predicted by K-Nearest Neighbors Algorithm)</p>
+          <hr>
+          <h2 style="color:#959d90">{% for genre_knn in genresByKNN %}
+            {{ genre_knn }}{% if not loop.last %}, {% endif %}
+          {% endfor %}</h2>
+
+          <p>Random Songs that You May Like (Predicted by K-Nearest Neighbors Algorithm)</p>
+          <table>
+            <tr>
+              <th class="th">Genre</th>
+              <th class="th">Song</th>
+              <th class="th">Artist</th>
+            </tr>
+            {% for Song_info in SongsByKNN %}
+              <tr>
+                <td>{{ Song_info['genre'] }}</td>
+                <td>{{ Song_info['track_name'] }}</td>
+                <td>{{ Song_info['artist_name'] }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+      {% endif %}
+
+      <a href="{{ url_for('charts') }}" class="link">Spotify Top 30 Songs</a><br><br>
+      <a href="https://github.com/becoollll/Music-Recommendations" target="_blank" style="color:#959d90;"><i class="fab fa-github fa-3x"></a></i>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spotify Top 30 Songs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    
+    <div class="center">
+      <p class="title"><a href="{{ url_for('charts') }}">Spotify Top 30 Songs</a><p>
+      <a href="{{ url_for('index') }}" class="link" style="margin-top: 5%;">Back to Music Recommendations</a>
+      <table>
+        <tr>
+          <th>Ranking</th>
+          <th>Song</th>
+          <th>Artist</th>
+        </tr>
+        {% for song in songs %}
+          <tr>
+            <td>{{ song['ranking'] }}</td>
+            <td>{{ song['song'] }}</td>
+            <td>{{ song['artist'] }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <a href="https://github.com/becoollll/Music-Recommendations" target="_blank" style="color:#959d90;"><i class="fab fa-github fa-3x"></a></i>
+    </div>
+  </body>
+</html>
