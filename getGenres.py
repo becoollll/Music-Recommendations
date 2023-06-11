@@ -2,7 +2,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
 def getGenres(input_text):
-
     client_id = 'client_id_here'
     client_secret = 'client_secret_here'
 

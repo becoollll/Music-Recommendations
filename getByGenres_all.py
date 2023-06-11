@@ -3,9 +3,10 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
 def getByGenres_all(input_genres):
-    # 設定Spotify API金鑰和密鑰
+    # 設定您的Spotify API金鑰和密鑰
     client_id = 'client_id_here'
     client_secret = 'client_secret_here'
+
 
     # 創建授權流程
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)

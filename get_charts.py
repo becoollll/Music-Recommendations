@@ -31,7 +31,8 @@ def get_charts():
         temp = {
             'ranking': count,
             'song': song,
-            'artist': artist
+            'artist': artist,
+            'link': url
         }
         songs.append(temp)
         count += 1

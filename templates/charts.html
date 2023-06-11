@@ -8,16 +8,18 @@
   <body>
     
     <div class="center">
-      <p class="title"><a href="{{ url_for('charts') }}">Spotify Top 30 Songs</a><p>
-      <a href="{{ url_for('index') }}" class="link" style="margin-top: 5%;">Back to Music Recommendations</a>
-      <table>
+      <p class="title"><a href="{{ url_for('charts') }}" class="title">Spotify Top 30 Songs</a><p>
+      <form action="{{ url_for('redirect_page') }}">
+        <input type="submit" value="Music Recommendations" class="btn_2"/>
+      </form>
+      <table class="chart_table">
         <tr>
           <th>Ranking</th>
           <th>Song</th>
           <th>Artist</th>
         </tr>
         {% for song in songs %}
-          <tr>
+          <tr style="cursor: pointer;" onclick="window.open('{{ song['link'] }}', '_blank');">
             <td>{{ song['ranking'] }}</td>
             <td>{{ song['song'] }}</td>
             <td>{{ song['artist'] }}</td>
