@@ -1,9 +1,10 @@
-from flask import Flask, render_template, redirect, url_for,  request, Markup
+from flask import Flask, render_template, redirect, url_for,  request
 from getGenres import getGenres
 from getByGenres_all import getByGenres_all
 from getByGenres_sep import getByGenres_sep
 from knn_genre import knn_genre
 from get_charts import get_charts
+from markupsafe import Markup
 
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
