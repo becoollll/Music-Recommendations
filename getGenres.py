@@ -6,7 +6,7 @@ def getGenres(input_text):
     client_secret = 'client_secret_here'
 
 
-    # Create the authorization flow
+    # Create authorization process
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
@@ -27,5 +27,5 @@ def getGenres(input_text):
         track_name = track_info['name']
         return genres, artist_name, track_name
     else:
-        return f"找不到歌曲 '{song_name}'"
+        return f"Cannot find '{song_name}'"
 

@@ -3,26 +3,26 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
 def getByGenres_sep(input_genres):
-    # 設定您的Spotify API金鑰和密鑰
+    # Set Spotify API key
     client_id = 'client_id_here'
     client_secret = 'client_secret_here'
 
 
-    # 創建授權流程
+    # Create authorization process
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-    # 定義要查詢的特定類型
-    genres = input_genres  # 更改為您想要的特定類型列表
+    # Define the specific genre to search
+    genres = input_genres  # Change to the desired list of specific genres
 
     results_list = []
 
     for genre in genres:
-        # 搜尋特定類型的歌曲
+        # Search for songs of specific genres
         results = sp.search(q=genre, type='track', limit=50)
         
         if results['tracks']['items']:
-            # 從結果中隨機選擇一首歌曲
+            # Choose random songs from results
             random_track = random.choice(results['tracks']['items'])
             track_name = random_track['name']
             artist_name = random_track['artists'][0]['name']
@@ -34,7 +34,7 @@ def getByGenres_sep(input_genres):
             }
             results_list.append(track_info)
         else:
-            print(f"找不到{genre}歌曲")
+            print(f"Cannot find {genre} songs")
     return results_list
 '''
     formatted_results = ''

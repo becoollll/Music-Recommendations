@@ -5,12 +5,12 @@ from sklearn.neighbors import KNeighborsClassifier
 def knn_genre(genres):
     df = pd.read_csv('data_by_genres.csv')
 
-    # 使用選定的特徵
+    # Use selected features
     features = ['acousticness', 'danceability', 'instrumentalness', 'speechiness', 'tempo']
     X = df[features].values
     y = df['genres'].values
 
-    # 將所有的特徵標準化
+    # Standardize all features
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
@@ -18,12 +18,12 @@ def knn_genre(genres):
 
     knn.fit(X_scaled, y)
 
-    # 指定的音樂類型
+    # specified music genre
     target = genres
 
 
 
-    # 預測最相關的3個genre
+    # Predict the top 3 most relevant genres
     ret_genres = []
     
     for i in range(len(target)):
@@ -32,7 +32,7 @@ def knn_genre(genres):
             target_features = X_scaled[target_idx].reshape(1, -1)
             nearest_neighbors = knn.kneighbors(target_features, n_neighbors=4, return_distance=False)
 
-            # 最相關的音樂類型
+            # the most relevant genre
             most_similar_genres = [y[i] for i in nearest_neighbors[0]]
             for tmp in most_similar_genres[1:]:
                 ret_genres.append(tmp)
@@ -40,8 +40,8 @@ def knn_genre(genres):
             #ret_genres.append(most_similar_genres[1:])
             #print(f'與{target[i]}最相近的三個音樂種類:', most_similar_genres[1:])
         except:
-            ### 可能dataset中會沒有某些音樂種類
+            ### Some genres might be missing from the dataset
             print(f"'{target[i]}' doesn't exist in dataset.")
     
-    ## 去掉重複音樂種類
+    ## Remove duplicate genres
     return list(dict.fromkeys(ret_genres))
