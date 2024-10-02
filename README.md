@@ -2,6 +2,8 @@
 
 This is a Flask web application that provides music recommendations based on user preferences and displays popular music charts. The project leverages Flask for the back-end, along with front-end technologies like HTML, CSS, and JavaScript to create a user-friendly interface.
 
+🔗 Here is the link for this project: [Music Recommendations](https://musicrecommendations.onrender.com/)
+
 ## Project Overview
 
 The goal of this project is to build a web application where users can receive music recommendations, view trending music charts, and explore new music genres. Users can select their favorite artists, genres, or songs to get personalized recommendations.
